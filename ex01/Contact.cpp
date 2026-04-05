@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 21:29:42 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/03/21 16:41:09 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/04/05 20:54:14 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,3 @@ std::string Contact::getDarkestSecret()
 {
     return(_darkest_secret);
 }
-
-

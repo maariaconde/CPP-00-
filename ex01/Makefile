@@ -6,13 +6,15 @@
 #    By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/07 20:09:16 by mconde-s          #+#    #+#              #
-#    Updated: 2026/03/07 20:36:25 by mconde-s         ###   ########.fr        #
+#    Updated: 2026/04/05 20:41:31 by mconde-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = megaphone
 
-C_FILES = PhoneBook.cpp
+C_FILES = PhoneBook.cpp \
+			Contact.cpp \
+			main.cpp
 		  
 O_FILES = ${C_FILES:.cpp=.o}
 
