@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:29:17 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/03/21 16:52:17 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/12 19:52:20 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
 class Contact
 {
     private:
-        int indx;
         std::string _first_name;
         std::string _last_name;
         std::string _nickname;

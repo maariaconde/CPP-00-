@@ -6,11 +6,11 @@
 #    By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/07 20:09:16 by mconde-s          #+#    #+#              #
-#    Updated: 2026/04/05 20:41:31 by mconde-s         ###   ########.fr        #
+#    Updated: 2026/07/12 18:07:32 by mconde-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
 
 C_FILES = PhoneBook.cpp \
 			Contact.cpp \

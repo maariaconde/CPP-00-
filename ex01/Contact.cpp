@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 21:29:42 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/04/05 20:54:14 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/12 17:58:18 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 //std::string s = "hola";
 //s += " mundo";
 
-//set es método de una clase 
+//Cambiar el valor de un atributo privado set
+//obtener el valor de un atributo privado get
+
+//set es método (nombre que se le da a una función que es parte de una clase) de una clase 
 //que va a cambiar el valor del atributo 
 //por el parámetro que se le pase.
 void Contact::setFirstName(std::string n)
