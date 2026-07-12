@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:40:50 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/13 01:04:51 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/13 01:15:31 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ void add(PhoneBook *phonebook, std::string line)
    std::getline(std::cin, line);
    addFirstName(phonebook, line);
    std::cout << "Last name:" << std::endl;
+   std::getline(std::cin, line);
    addLastName(phonebook, line);
-   std::getline(std::cin, line);
    std::cout << "Nickname:" << std::endl;
-   addNickname(phonebook, line);
    std::getline(std::cin, line);
+   addNickname(phonebook, line);
    std::cout << "Phonenumber:" << std::endl;
    std::getline(std::cin, line);
    addPhoneNumber(phonebook, line);
@@ -92,13 +92,13 @@ void Search(PhoneBook *phonebook)
       return;
    }
    std::cout << "     Index|First Name| Last Name|  Nickname" << std::endl;
-   std::cout << phonebook->index + '0' << std::endl;
-   while(++i < phonebook->index)
+   while(i <= phonebook->index)
    {
-      std::cout << std::right << std::setw(10) << i + '0' << "|";
+      std::cout << std::right << std::setw(10) << i << "|";
       std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getFirstName() << "|";
       std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getlast_Name() << "|";
       std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getNickname() << std::endl;
+      i++;
    }
       
 }
