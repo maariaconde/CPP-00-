@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:13:56 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/12 19:52:30 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/13 01:23:47 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ class PhoneBook
     public:
         int index;
         Contact _all_contact[8];
+        void Search(PhoneBook *phonebook);
+        void add(PhoneBook *phonebook, std::string line);
+
 };
 
 #endif
