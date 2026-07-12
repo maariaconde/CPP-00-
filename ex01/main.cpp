@@ -6,40 +6,64 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:40:50 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/12 19:53:40 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/13 01:04:51 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-void addDarkestSecret(PhoneBook phonebook, std::string contact)
+void addDarkestSecret(PhoneBook *phonebook, std::string contact)
 {
-   std::string print;
-   phonebook._all_contact[phonebook.index].setDarkestSecret(contact);
-   print = phonebook._all_contact[phonebook.index].getDarkestSecret();
-    std::cout << print << std::endl;
-    
+   if (contact.length() > 10)
+   {
+      contact.resize(10);
+      contact[9] = '.';
+   }
+   phonebook->_all_contact[phonebook->index].setDarkestSecret(contact);
 }
 
-void addPhoneNumber(PhoneBook phonebook, std::string contact)
+void addPhoneNumber(PhoneBook *phonebook, std::string contact)
 {
-   phonebook._all_contact[phonebook.index].setPhoneNumber(contact);
+   if (contact.length() > 10)
+   {
+      contact.resize(10);
+      contact[9] = '.';
+   }
+   phonebook->_all_contact[phonebook->index].setPhoneNumber(contact);
 }
-void addNickname(PhoneBook phonebook, std::string contact)
+void addNickname(PhoneBook *phonebook, std::string contact)
 {
-   phonebook._all_contact[phonebook.index].setNickname(contact);
+   if (contact.length() > 10)
+   {
+      contact.resize(10);
+      contact[9] = '.';
+   }
+   phonebook->_all_contact[phonebook->index].setNickname(contact);
 }
-void addLastName(PhoneBook phonebook, std::string contact)
+void addLastName(PhoneBook *phonebook, std::string contact)
 {
-   phonebook._all_contact[phonebook.index].setlast_Name(contact);
+   if (contact.length() > 10)
+   {
+      contact.resize(10);
+      contact[9] = '.';
+   }
+   phonebook->_all_contact[phonebook->index].setlast_Name(contact);
 }
-void addFirstName(PhoneBook phonebook, std::string contact)
+
+void addFirstName(PhoneBook *phonebook, std::string contact)
 {
-   phonebook.index++;
-   phonebook._all_contact[phonebook.index].setFirstName(contact);
+   if(phonebook->index == 8)
+      phonebook->index = -1;
+   phonebook->index++;
+   if (contact.length() > 10)
+   {
+      contact.resize(10);
+      contact[9] = '.';
+   }
+   phonebook->_all_contact[phonebook->index].setFirstName(contact);
 }
-void add(PhoneBook phonebook, std::string line)
+void add(PhoneBook *phonebook, std::string line)
 {
    std::cout << "First name:" << std::endl;
    std::getline(std::cin, line);
@@ -56,16 +80,34 @@ void add(PhoneBook phonebook, std::string line)
    std::cout << "Darkest secret:" << std::endl;
    std::getline(std::cin, line);
    addDarkestSecret(phonebook, line);
+}
 
-   
+void Search(PhoneBook *phonebook)
+{
+   int i;
+   i = 0;
+   if(phonebook->index == -1)
+   {
+      std::cout << "There are no contacts" << std::endl;
+      return;
+   }
+   std::cout << "     Index|First Name| Last Name|  Nickname" << std::endl;
+   std::cout << phonebook->index + '0' << std::endl;
+   while(++i < phonebook->index)
+   {
+      std::cout << std::right << std::setw(10) << i + '0' << "|";
+      std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getFirstName() << "|";
+      std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getlast_Name() << "|";
+      std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getNickname() << std::endl;
+   }
+      
 }
 int main(int argc, char **argv)
 {
    std::string line;
    PhoneBook phonebook;
 
-   phonebook.index = 0;
-   int flag = 0;
+   phonebook.index = -1;
 
    if(argc < 1 || !argv)
    {
@@ -75,14 +117,11 @@ int main(int argc, char **argv)
    //std:cin --> es lo que el programa lee del teclado 
    while(std::getline(std::cin, line))
    {
-      if(line == "ADD" || flag == 1)
-      {
-         std::cout << line << std::endl;
-         add(phonebook, line);
-      }
+      if(line == "ADD")
+         add(&phonebook, line);
       else if(line == "SEARCH")
-         std::cout << "BUENAS TARDES" << std::endl;
+         Search(&phonebook);
       else if(line == "EXIT")
-         std::cout << "KLK" << std::endl;
+         return(0);
    }
 }
