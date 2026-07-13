@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:10:34 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/13 23:15:04 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/13 23:53:30 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,16 @@ void addFirstName(PhoneBook *phonebook, std::string contact)
    }
    phonebook->_all_contact[phonebook->index].setFirstName(contact);
 }
-void CheckEmpty(std::string line)
+void CheckEmpty(std::string &line)
 {
    while(line.empty())
    {
-      std::cout << "Invalid. Empty input" << std::endl;
+      std::cout << "Invalid. Please enter a value:" << std::endl;
       if(!std::getline(std::cin, line))
          exit(1);
    }
 }
-bool CheckNumber(std::string line)
+bool CheckNumber(std::string &line)
 {
    int i = 0;
 
@@ -89,7 +89,7 @@ bool CheckNumber(std::string line)
    return(true);
 }
 
-void CheckPhoneNumber(std::string line)
+void CheckPhoneNumber(std::string &line)
 {
    CheckEmpty(line);
    while(CheckNumber(line) == false)
@@ -99,7 +99,7 @@ void CheckPhoneNumber(std::string line)
    }
 }
 
-bool CheckLetters(std::string line)
+bool CheckLetters(std::string &line)
 {
    int i = 0;
 
@@ -112,7 +112,7 @@ bool CheckLetters(std::string line)
    return(true);
 }
 
-void CheckName(std::string line)
+void CheckName(std::string &line)
 {
    CheckEmpty(line);
    while(CheckLetters(line) == false)
@@ -168,7 +168,9 @@ void CheckContact(PhoneBook *phonebook, std::string line)
       if((num < 8 && num >= 0) && phonebook->flag == true && line.length() == 1 && std::isdigit(line[0]))
          break;
       std::cout << "Invalid. Select the contact:" << std::endl;
-      std::getline(std::cin, line);
+      if(!std::getline(std::cin, line))
+         exit(1);
+      CheckEmpty(line);
       num = std::atoi(line.c_str());
    }
    PrintContact(phonebook, line);
