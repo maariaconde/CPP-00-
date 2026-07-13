@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:10:34 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/13 23:53:30 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/14 00:08:31 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ void CheckPhoneNumber(std::string &line)
    while(CheckNumber(line) == false)
    {
       std::cout << "Invalid. Only numbers allowed" << std::endl;
-      std::getline(std::cin, line);
+      if(!std::getline(std::cin, line));
+         exit(1);
+      CheckEmpty(line);
    }
 }
 
@@ -118,7 +120,9 @@ void CheckName(std::string &line)
    while(CheckLetters(line) == false)
    {
       std::cout << "Invalid. Only letters allowed" << std::endl;
-      std::getline(std::cin, line);
+      if(!std::getline(std::cin, line));
+         exit(1);
+      CheckEmpty(line);
    }
 }
 

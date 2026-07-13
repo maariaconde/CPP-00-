@@ -6,12 +6,13 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:13:56 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/13 21:59:26 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/13 23:59:50 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include <iostream>  
+#include <iostream>
+#include <cctype>
 #include <cstdlib>
 #include "Contact.hpp"
 #include <string>
