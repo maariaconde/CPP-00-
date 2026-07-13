@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:10:34 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/14 00:18:13 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/14 00:20:10 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void addFirstName(PhoneBook *phonebook, std::string contact)
       phonebook->flag = true;
       phonebook->index = -1;
    }
+   phonebook->index++;
    phonebook->_all_contact[phonebook->index].setFirstName(contact);
 }
 void CheckEmpty(std::string &line)
