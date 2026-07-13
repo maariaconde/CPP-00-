@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:10:34 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/14 00:08:31 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/14 00:18:13 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,21 @@
 
 void addDarkestSecret(PhoneBook *phonebook, std::string contact)
 {
-   if (contact.length() > 10)
-   {
-      contact.resize(10);
-      contact[9] = '.';
-   }
    phonebook->_all_contact[phonebook->index].setDarkestSecret(contact);
 }
 
 void addPhoneNumber(PhoneBook *phonebook, std::string contact)
 {
-   if (contact.length() > 10)
-   {
-      contact.resize(10);
-      contact[9] = '.';
-   }
    phonebook->_all_contact[phonebook->index].setPhoneNumber(contact);
 }
 
 void addNickname(PhoneBook *phonebook, std::string contact)
 {
-   if (contact.length() > 10)
-   {
-      contact.resize(10);
-      contact[9] = '.';
-   }
    phonebook->_all_contact[phonebook->index].setNickname(contact);
 }
 
 void addLastName(PhoneBook *phonebook, std::string contact)
 {
-   if (contact.length() > 10)
-   {
-      contact.resize(10);
-      contact[9] = '.';
-   }
    phonebook->_all_contact[phonebook->index].setlast_Name(contact);
 }
 
@@ -58,12 +38,6 @@ void addFirstName(PhoneBook *phonebook, std::string contact)
    {
       phonebook->flag = true;
       phonebook->index = -1;
-   }
-   phonebook->index++;
-   if (contact.length() > 10)
-   {
-      contact.resize(10);
-      contact[9] = '.';
    }
    phonebook->_all_contact[phonebook->index].setFirstName(contact);
 }
@@ -95,7 +69,7 @@ void CheckPhoneNumber(std::string &line)
    while(CheckNumber(line) == false)
    {
       std::cout << "Invalid. Only numbers allowed" << std::endl;
-      if(!std::getline(std::cin, line));
+      if(!std::getline(std::cin, line))
          exit(1);
       CheckEmpty(line);
    }
@@ -120,7 +94,7 @@ void CheckName(std::string &line)
    while(CheckLetters(line) == false)
    {
       std::cout << "Invalid. Only letters allowed" << std::endl;
-      if(!std::getline(std::cin, line));
+      if(!std::getline(std::cin, line))
          exit(1);
       CheckEmpty(line);
    }
@@ -180,6 +154,16 @@ void CheckContact(PhoneBook *phonebook, std::string line)
    PrintContact(phonebook, line);
 }
 
+std::string FormatColumn(std::string contact)
+{
+   if (contact.length() > 10)
+   {
+      contact.resize(10);
+      contact[9] = '.';
+   }
+   return(contact);
+}
+
 void PhoneBook::Search(PhoneBook *phonebook, std::string line)
 {
    int i;
@@ -194,9 +178,9 @@ void PhoneBook::Search(PhoneBook *phonebook, std::string line)
    while(i <= phonebook->index || (phonebook->flag == true && i < 8))
    {
       std::cout << std::right << std::setw(10) << i << "|";
-      std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getFirstName() << "|";
-      std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getlast_Name() << "|";
-      std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getNickname() << std::endl;
+      std::cout << std::right << std::setw(10) << FormatColumn(phonebook->_all_contact[i].getFirstName()) << "|";
+      std::cout << std::right << std::setw(10) << FormatColumn(phonebook->_all_contact[i].getlast_Name()) << "|";
+      std::cout << std::right << std::setw(10) << FormatColumn(phonebook->_all_contact[i].getNickname()) << std::endl;
       i++;
    }
    while(1)
@@ -207,6 +191,6 @@ void PhoneBook::Search(PhoneBook *phonebook, std::string line)
       if(!line.empty())
          break;
    }
-      CheckContact(phonebook, line);
+   CheckContact(phonebook, line);
       
 }
