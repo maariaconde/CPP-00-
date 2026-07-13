@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:10:34 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/13 01:25:38 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/13 21:47:12 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void addPhoneNumber(PhoneBook *phonebook, std::string contact)
    }
    phonebook->_all_contact[phonebook->index].setPhoneNumber(contact);
 }
+
 void addNickname(PhoneBook *phonebook, std::string contact)
 {
    if (contact.length() > 10)
@@ -48,6 +49,7 @@ void addNickname(PhoneBook *phonebook, std::string contact)
    }
    phonebook->_all_contact[phonebook->index].setNickname(contact);
 }
+
 void addLastName(PhoneBook *phonebook, std::string contact)
 {
    if (contact.length() > 10)
@@ -90,9 +92,36 @@ void PhoneBook::add(PhoneBook *phonebook, std::string line)
    addDarkestSecret(phonebook, line);
 }
 
-void PhoneBook::Search(PhoneBook *phonebook)
+void PrintContact(PhoneBook *phonebook, std::string line)
+{
+   int num;
+   num = std::atoi(line.c_str());
+   
+   std::cout << "First Name: " << phonebook->_all_contact[num].getFirstName() << std::endl;
+   std::cout << "Last name: " << phonebook->_all_contact[num].getlast_Name() << std::endl;
+   std::cout << "Nickname: " << phonebook->_all_contact[num].getNickname() << std::endl;
+   std::cout << "Phonenumber: " << phonebook->_all_contact[num].getPhoneNumber() << std::endl;
+   std::cout << "Darkest secret: " << phonebook->_all_contact[num].getDarkestSecret() << std::endl;
+   
+}
+
+void CheckContact(PhoneBook *phonebook, std::string line)
+{
+   int num;
+   num = std::atoi(line.c_str());
+   while(line.length() > 1 || !std::isdigit(line[0]) || num > phonebook->index)
+   {
+      std::cout << "Invalid. Select the contact:" << std::endl;
+      std::getline(std::cin, line);
+      num = std::atoi(line.c_str());
+   }
+   PrintContact(phonebook, line);
+}
+
+void PhoneBook::Search(PhoneBook *phonebook, std::string line)
 {
    int i;
+   std::string temp;
    i = 0;
    if(phonebook->index == -1)
    {
@@ -108,5 +137,14 @@ void PhoneBook::Search(PhoneBook *phonebook)
       std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getNickname() << std::endl;
       i++;
    }
+   while(1)
+   {
+      
+      std::cout << "Select the contact:" << std::endl;
+      std::getline(std::cin, line);
+      if(!line.empty())
+         break;
+   }
+      CheckContact(phonebook, line);
+      
 }
-

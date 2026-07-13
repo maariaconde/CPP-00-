@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:40:50 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/13 01:26:59 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:52:31 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(int argc, char **argv)
       if(line == "ADD")
          phonebook.add(&phonebook, line);
       else if(line == "SEARCH")
-         phonebook.Search(&phonebook);
+         phonebook.Search(&phonebook, line);
       else if(line == "EXIT")
          return(0);
    }
