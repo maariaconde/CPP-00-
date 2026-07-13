@@ -6,20 +6,12 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:10:34 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/13 21:47:12 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/13 23:15:04 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-/**
- * Tareas:
- * - En search pedir ínidice y printear toda la info de ese índice.
- * - En search cuando soliciten un contacto que no existe, regularlo.
- * - No permitir contactos vacíos en el ADD.
- * - No permitir que en los números pongan letras
- * - No permitir que en los nombres pongan números.
- */
 void addDarkestSecret(PhoneBook *phonebook, std::string contact)
 {
    if (contact.length() > 10)
@@ -62,8 +54,11 @@ void addLastName(PhoneBook *phonebook, std::string contact)
 
 void addFirstName(PhoneBook *phonebook, std::string contact)
 {
-   if(phonebook->index == 8)
+   if(phonebook->index == 7)
+   {
+      phonebook->flag = true;
       phonebook->index = -1;
+   }
    phonebook->index++;
    if (contact.length() > 10)
    {
@@ -72,23 +67,82 @@ void addFirstName(PhoneBook *phonebook, std::string contact)
    }
    phonebook->_all_contact[phonebook->index].setFirstName(contact);
 }
+void CheckEmpty(std::string line)
+{
+   while(line.empty())
+   {
+      std::cout << "Invalid. Empty input" << std::endl;
+      if(!std::getline(std::cin, line))
+         exit(1);
+   }
+}
+bool CheckNumber(std::string line)
+{
+   int i = 0;
+
+   while(line[i])
+   {
+      if(!std::isdigit(line[i]))
+         return(false);
+      i++;
+   }
+   return(true);
+}
+
+void CheckPhoneNumber(std::string line)
+{
+   CheckEmpty(line);
+   while(CheckNumber(line) == false)
+   {
+      std::cout << "Invalid. Only numbers allowed" << std::endl;
+      std::getline(std::cin, line);
+   }
+}
+
+bool CheckLetters(std::string line)
+{
+   int i = 0;
+
+   while(line[i])
+   {
+      if(std::isdigit(line[i]))
+         return(false);
+      i++;
+   }
+   return(true);
+}
+
+void CheckName(std::string line)
+{
+   CheckEmpty(line);
+   while(CheckLetters(line) == false)
+   {
+      std::cout << "Invalid. Only letters allowed" << std::endl;
+      std::getline(std::cin, line);
+   }
+}
 
 void PhoneBook::add(PhoneBook *phonebook, std::string line)
 {
    std::cout << "First name:" << std::endl;
    std::getline(std::cin, line);
+   CheckName(line);
    addFirstName(phonebook, line);
    std::cout << "Last name:" << std::endl;
    std::getline(std::cin, line);
+   CheckName(line);
    addLastName(phonebook, line);
    std::cout << "Nickname:" << std::endl;
    std::getline(std::cin, line);
+   CheckEmpty(line);
    addNickname(phonebook, line);
    std::cout << "Phonenumber:" << std::endl;
    std::getline(std::cin, line);
+   CheckPhoneNumber(line);
    addPhoneNumber(phonebook, line);
    std::cout << "Darkest secret:" << std::endl;
    std::getline(std::cin, line);
+   CheckEmpty(line);
    addDarkestSecret(phonebook, line);
 }
 
@@ -109,8 +163,10 @@ void CheckContact(PhoneBook *phonebook, std::string line)
 {
    int num;
    num = std::atoi(line.c_str());
-   while(line.length() > 1 || !std::isdigit(line[0]) || num > phonebook->index)
+   while(line.length() > 1 || !std::isdigit(line[0]) || num > phonebook->index || num < 0)
    {
+      if((num < 8 && num >= 0) && phonebook->flag == true && line.length() == 1 && std::isdigit(line[0]))
+         break;
       std::cout << "Invalid. Select the contact:" << std::endl;
       std::getline(std::cin, line);
       num = std::atoi(line.c_str());
@@ -129,7 +185,7 @@ void PhoneBook::Search(PhoneBook *phonebook, std::string line)
       return;
    }
    std::cout << "     Index|First Name| Last Name|  Nickname" << std::endl;
-   while(i <= phonebook->index)
+   while(i <= phonebook->index || (phonebook->flag == true && i < 8))
    {
       std::cout << std::right << std::setw(10) << i << "|";
       std::cout << std::right << std::setw(10) << phonebook->_all_contact[i].getFirstName() << "|";
@@ -139,9 +195,9 @@ void PhoneBook::Search(PhoneBook *phonebook, std::string line)
    }
    while(1)
    {
-      
       std::cout << "Select the contact:" << std::endl;
-      std::getline(std::cin, line);
+      if(!std::getline(std::cin, line))
+         exit(1);
       if(!line.empty())
          break;
    }
