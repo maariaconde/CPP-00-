@@ -6,7 +6,7 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 16:40:50 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/14 01:09:18 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/14 01:26:17 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int main(int argc, char **argv)
 {
    std::string line;
    PhoneBook phonebook;
-
-   phonebook.index = -1;
-   phonebook.flag = false;
+  
    if(argc < 1 || !argv)
    {
       std::cout << "Error" << std::endl << "Invalid argument" << std::endl;

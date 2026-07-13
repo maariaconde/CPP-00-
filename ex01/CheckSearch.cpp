@@ -11,16 +11,16 @@ std::string PhoneBook::FormatColumn(std::string contact)
    return(contact);
 }
 
-void PrintContact(PhoneBook *phonebook, std::string line)
+void PhoneBook::PrintContact(std::string line)
 {
    int num;
    num = std::atoi(line.c_str());
    
-   std::cout << "First Name: " << phonebook->_all_contact[num].getFirstName() << std::endl;
-   std::cout << "Last name: " << phonebook->_all_contact[num].getlast_Name() << std::endl;
-   std::cout << "Nickname: " << phonebook->_all_contact[num].getNickname() << std::endl;
-   std::cout << "Phonenumber: " << phonebook->_all_contact[num].getPhoneNumber() << std::endl;
-   std::cout << "Darkest secret: " << phonebook->_all_contact[num].getDarkestSecret() << std::endl;
+   std::cout << "First Name: " << _all_contact[num].getFirstName() << std::endl;
+   std::cout << "Last name: " << _all_contact[num].getlast_Name() << std::endl;
+   std::cout << "Nickname: " << _all_contact[num].getNickname() << std::endl;
+   std::cout << "Phonenumber: " << _all_contact[num].getPhoneNumber() << std::endl;
+   std::cout << "Darkest secret: " << _all_contact[num].getDarkestSecret() << std::endl;
 }
 
 void PhoneBook::CheckContact(PhoneBook *phonebook, std::string line)
@@ -37,5 +37,5 @@ void PhoneBook::CheckContact(PhoneBook *phonebook, std::string line)
       CheckEmpty(line);
       num = std::atoi(line.c_str());
    }
-   PrintContact(phonebook, line);
+   PrintContact(line);
 }

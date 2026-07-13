@@ -6,12 +6,17 @@
 /*   By: mconde-s <mconde-s@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:10:34 by mconde-s          #+#    #+#             */
-/*   Updated: 2026/07/14 01:09:24 by mconde-s         ###   ########.fr       */
+/*   Updated: 2026/07/14 01:24:14 by mconde-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
+PhoneBook::PhoneBook()
+{
+   index = -1;
+   flag = false;
+}
 void PhoneBook::add(PhoneBook *phonebook, std::string line)
 {
    std::cout << "First name:" << std::endl;
